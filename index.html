@@ -1320,25 +1320,40 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
         <article class="proj__card">
           <div class="proj__visual">
             <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <g stroke="var(--chart)" stroke-width="1.2" opacity="0.55">
-                <path d="M96 52h48M96 90h48M96 128h48M64 52v76" fill="none" />
-              </g>
-              <g fill="rgba(87,144,230,0.16)" stroke="var(--chart)" stroke-width="1.2">
-                <rect x="24" y="34" width="72" height="36" rx="7" />
-                <rect x="144" y="34" width="80" height="36" rx="7" />
-                <rect x="144" y="72" width="80" height="36" rx="7" />
-                <rect x="144" y="110" width="80" height="36" rx="7" />
-                <rect x="240" y="72" width="56" height="36" rx="7" />
-              </g>
-              <g fill="#ffffff" opacity="0.75">
-                <rect x="34" y="44" width="38" height="4" rx="2" /><rect x="34" y="54" width="24" height="4" rx="2" />
-                <rect x="154" y="44" width="44" height="4" rx="2" /><rect x="154" y="54" width="28" height="4" rx="2" />
-                <rect x="154" y="82" width="40" height="4" rx="2" /><rect x="154" y="92" width="30" height="4" rx="2" />
-                <rect x="154" y="120" width="46" height="4" rx="2" /><rect x="154" y="130" width="26" height="4" rx="2" />
-                <rect x="250" y="82" width="34" height="4" rx="2" /><rect x="250" y="92" width="22" height="4" rx="2" />
-              </g>
-              <path d="M224 90h16" stroke="var(--chart)" stroke-width="1.2" opacity="0.55" fill="none" />
-            </svg>
+            <text x="12" y="19" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.4" fill="rgba(255,255,255,0.45)" letter-spacing="1.2">SCHEMA &#183; 10 TABLES</text>
+            <g fill="none" stroke="var(--chart)" stroke-opacity="0.55" stroke-width="1"><path d="M102 51 H108 V85 H115" /><path d="M308 51 H313 V97 H207" /></g><g fill="var(--chart)"><circle cx="102" cy="51" r="1.7" /><circle cx="115" cy="85" r="1.7" /><circle cx="308" cy="51" r="1.7" /><circle cx="207" cy="97" r="1.7" /></g>
+            <g>
+            <rect x="12" y="30" width="90" height="55" rx="5" fill="rgba(255,255,255,0.05)" stroke="var(--chart)" stroke-opacity="0.45" stroke-width="1" />
+            <path d="M12 45 V35 A5 5 0 0 1 17 30 H97 A5 5 0 0 1 102 35 V45 Z" fill="var(--chart)" fill-opacity="0.22" />
+            <text x="19" y="40.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="7.5" fill="#ffffff" letter-spacing="0.4">shopkeepers</text>
+            <text x="19" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">id</text>
+            <text x="96" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="var(--chart)" letter-spacing="0.3">PK</text>
+            <text x="19" y="65.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">name</text>
+            <text x="19" y="77.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">phone</text>
+            </g>
+            <g>
+            <rect x="115" y="52" width="92" height="67" rx="5" fill="rgba(255,255,255,0.05)" stroke="var(--chart)" stroke-opacity="0.45" stroke-width="1" />
+            <path d="M115 67 V57 A5 5 0 0 1 120 52 H202 A5 5 0 0 1 207 57 V67 Z" fill="var(--chart)" fill-opacity="0.22" />
+            <text x="122" y="62.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="7.5" fill="#ffffff" letter-spacing="0.4">transactions</text>
+            <text x="122" y="75.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">id</text>
+            <text x="201" y="75.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="var(--chart)" letter-spacing="0.3">PK</text>
+            <text x="122" y="87.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">shop_id</text>
+            <text x="201" y="87.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="rgba(255,255,255,0.42)" letter-spacing="0.3">FK</text>
+            <text x="122" y="99.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">customer_id</text>
+            <text x="201" y="99.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="rgba(255,255,255,0.42)" letter-spacing="0.3">FK</text>
+            <text x="122" y="111.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">amount</text>
+            </g>
+            <g>
+            <rect x="220" y="30" width="88" height="55" rx="5" fill="rgba(255,255,255,0.05)" stroke="var(--chart)" stroke-opacity="0.45" stroke-width="1" />
+            <path d="M220 45 V35 A5 5 0 0 1 225 30 H303 A5 5 0 0 1 308 35 V45 Z" fill="var(--chart)" fill-opacity="0.22" />
+            <text x="227" y="40.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="7.5" fill="#ffffff" letter-spacing="0.4">customers</text>
+            <text x="227" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">id</text>
+            <text x="302" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="var(--chart)" letter-spacing="0.3">PK</text>
+            <text x="227" y="65.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">shop_id</text>
+            <text x="302" y="65.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="rgba(255,255,255,0.42)" letter-spacing="0.3">FK</text>
+            <text x="227" y="77.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">name</text>
+            </g>
+          </svg>
             <figcaption class="proj__cap proj__cap--a">
               <span class="proj__name">Dairy Management Mobile App</span>
               <span class="proj__when">May 2026 &ndash; Present</span>
@@ -1362,22 +1377,25 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
         <article class="proj__card">
           <div class="proj__visual">
             <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <defs>
-                <linearGradient id="projFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="var(--chart)" stop-opacity="0.38" />
-                  <stop offset="100%" stop-color="var(--chart)" stop-opacity="0" />
-                </linearGradient>
-              </defs>
-              <g stroke="#ffffff" stroke-width="0.6" opacity="0.14">
-                <path d="M0 45h320M0 90h320M0 135h320" />
-              </g>
-              <path d="M0 138 L40 128 L80 134 L120 108 L160 116 L200 84 L240 92 L280 58 L320 44 L320 180 L0 180 Z" fill="url(#projFill)" />
-              <polyline points="0,138 40,128 80,134 120,108 160,116 200,84 240,92 280,58 320,44"
-                        fill="none" stroke="var(--chart)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" />
-              <g fill="#ffffff" opacity="0.9">
-                <circle cx="120" cy="108" r="2.6" /><circle cx="200" cy="84" r="2.6" /><circle cx="280" cy="58" r="2.6" />
-              </g>
-            </svg>
+            <g><rect x="16" y="14" width="60" height="13" rx="6.5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" /><text x="46.0" y="22.8" font-size="6.2" text-anchor="middle" fill="rgba(255,255,255,0.8)">Apr &#8211; Jun 2022</text></g>
+            <g><rect x="80" y="14" width="62" height="13" rx="6.5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" /><text x="111.0" y="22.8" font-size="6.2" text-anchor="middle" fill="rgba(255,255,255,0.8)">BSE 500 index</text></g>
+            <g><rect x="196" y="16" width="8" height="8" rx="2" fill="var(--chart)" fill-opacity="1" /><text x="208" y="22.8" font-size="6.2" fill="rgba(255,255,255,0.7)">Portfolio</text></g>
+            <g><rect x="252" y="16" width="8" height="8" rx="2" fill="#ffffff" fill-opacity="0.26" /><text x="264" y="22.8" font-size="6.2" fill="rgba(255,255,255,0.7)">Index</text></g>
+            <g><line x1="16" y1="128" x2="304" y2="128" stroke="#ffffff" stroke-opacity="0.1" stroke-width="0.7" /><line x1="16" y1="101" x2="304" y2="101" stroke="#ffffff" stroke-opacity="0.1" stroke-width="0.7" /><line x1="16" y1="74" x2="304" y2="74" stroke="#ffffff" stroke-opacity="0.1" stroke-width="0.7" /><line x1="16" y1="46" x2="304" y2="46" stroke="#ffffff" stroke-opacity="0.1" stroke-width="0.7" /></g>
+            <rect x="28.0" y="82.0" width="10" height="46" rx="2" fill="var(--chart)" />
+            <rect x="42.0" y="90.0" width="10" height="38" rx="2" fill="#ffffff" fill-opacity="0.26" />
+            <rect x="76.0" y="70.0" width="10" height="58" rx="2" fill="var(--chart)" />
+            <rect x="90.0" y="85.0" width="10" height="43" rx="2" fill="#ffffff" fill-opacity="0.26" />
+            <rect x="124.0" y="89.0" width="10" height="39" rx="2" fill="var(--chart)" />
+            <rect x="138.0" y="83.0" width="10" height="45" rx="2" fill="#ffffff" fill-opacity="0.26" />
+            <rect x="172.0" y="58.0" width="10" height="70" rx="2" fill="var(--chart)" />
+            <rect x="186.0" y="78.0" width="10" height="50" rx="2" fill="#ffffff" fill-opacity="0.26" />
+            <rect x="220.0" y="73.0" width="10" height="55" rx="2" fill="var(--chart)" />
+            <rect x="234.0" y="80.0" width="10" height="48" rx="2" fill="#ffffff" fill-opacity="0.26" />
+            <rect x="268.0" y="52.0" width="10" height="76" rx="2" fill="var(--chart)" />
+            <rect x="282.0" y="72.0" width="10" height="56" rx="2" fill="#ffffff" fill-opacity="0.26" />
+            <line x1="16" y1="128" x2="304" y2="128" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1" />
+          </svg>
             <figcaption class="proj__cap proj__cap--b">
               <span class="proj__name">Finlatics FMEP</span>
               <span class="proj__when">Apr 2022 &ndash; Jun 2022</span>
