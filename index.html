@@ -401,20 +401,20 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 
 /* profile card */
 .pcard { display: flex; align-items: stretch; gap: 0.75rem; width: 100%; max-width: 20rem; }
-@media (min-width: 640px) { .pcard { max-width: 16rem; } }
+@media (min-width: 640px) { .pcard { max-width: 18rem; } }
 .pcard__left { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 0.5rem; }
 .pcard__value { font-size: 1.875rem; font-weight: 500; line-height: 1; }
 .pcard__chips { display: flex; flex-wrap: wrap; gap: 0.25rem; }
 .pcard__chips span { font-size: 0.6rem; border-radius: var(--radius-pill); border: 1px solid rgba(255,255,255,0.25); padding: 0.125rem 0.5rem; }
 .pcard__cap { font-size: 0.65rem; opacity: 0.8; }
-.pcard__mono {
-  width: 4rem; flex: none; aspect-ratio: 3 / 4;
+.pcard__photo {
+  width: 6rem; flex: none; aspect-ratio: 3 / 4;
   border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   background: linear-gradient(145deg, var(--brand) 0%, var(--brand-deep) 100%);
-  display: grid; place-items: center;
-  font-size: 1.25rem; font-weight: 500; letter-spacing: 0.08em;
-  border: 1px solid rgba(255,255,255,0.18);
 }
+.pcard__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
 
 /* ============================================================
    About / signature wins
@@ -1064,7 +1064,10 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
             </div>
             <span class="pcard__cap">Years turning data into decisions</span>
           </div>
-          <div class="pcard__mono" aria-hidden="true">NG</div>
+          <picture class="pcard__photo">
+            <source srcset="nikhil-gupta.webp" type="image/webp" />
+            <img src="nikhil-gupta.jpg" alt="Nikhil Gupta" width="600" height="800" loading="eager" decoding="async" />
+          </picture>
         </article>
       </div>
     </div>
@@ -1451,14 +1454,14 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
             </svg>
           </span>
           <h3>Core skills</h3>
-          <p class="ecard__lead">Roles and projects on this page where each one did the work.</p>
+          <p class="ecard__lead">Roles and projects where each one did the work.</p>
           <ul class="sbars">
-            <li class="sbar"><span class="sbar__k">Power BI</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:50%"></i></span><span class="sbar__v">2</span></li>
-            <li class="sbar"><span class="sbar__k">Advanced Excel</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:50%"></i></span><span class="sbar__v">2</span></li>
+            <li class="sbar"><span class="sbar__k">Power BI</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:100%"></i></span><span class="sbar__v">4</span></li>
+            <li class="sbar"><span class="sbar__k">Advanced Excel</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:100%"></i></span><span class="sbar__v">4</span></li>
             <li class="sbar"><span class="sbar__k">Macros &amp; VBA</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:25%"></i></span><span class="sbar__v">1</span></li>
-            <li class="sbar"><span class="sbar__k">SQL</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:50%"></i></span><span class="sbar__v">2</span></li>
-            <li class="sbar"><span class="sbar__k">Capital Markets</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:100%"></i></span><span class="sbar__v">4</span></li>
-            <li class="sbar"><span class="sbar__k">ETL</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:25%"></i></span><span class="sbar__v">1</span></li>
+            <li class="sbar"><span class="sbar__k">SQL</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:75%"></i></span><span class="sbar__v">3</span></li>
+            <li class="sbar"><span class="sbar__k">Capital Markets</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:75%"></i></span><span class="sbar__v">3</span></li>
+            <li class="sbar"><span class="sbar__k">ETL</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:50%"></i></span><span class="sbar__v">2</span></li>
           </ul>
         </div>
       </li>
