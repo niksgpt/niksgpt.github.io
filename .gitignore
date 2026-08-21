@@ -1,0 +1,7 @@
+# local dev helpers
+.claude/
+
+# OS cruft
+Thumbs.db
+Desktop.ini
+.DS_Store
