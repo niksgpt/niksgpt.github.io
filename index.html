@@ -280,9 +280,6 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 }
 .brandmark svg { width: 1.25rem; height: 1.25rem; flex: none; }
 
-.header__brand { flex: 1; display: flex; justify-content: flex-start; }
-@media (min-width: 1024px) { .header__brand { justify-content: center; } }
-
 .header__right { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; }
 @media (min-width: 640px) { .header__right { gap: 1.25rem; } }
 
@@ -358,9 +355,12 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 .hero__titlewrap { position: relative; z-index: 10; padding: 1rem 1.5rem 0; }
 @media (min-width: 640px) { .hero__titlewrap { padding: 1.5rem 2.5rem 0; } }
 .hero__kicker {
-  font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.22em;
-  color: rgba(255,255,255,0.72); margin-bottom: 0.75rem; display: block;
+  font-size: 0.9rem;               /* 0.75rem x 1.2 */
+  font-weight: 500; text-transform: uppercase; letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.72); margin-bottom: 0.75rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
 }
+.hero__kicker svg { width: 1.15em; height: 1.15em; flex: none; }
 .hero__title {
   font-size: 15vw; font-weight: 500; text-transform: uppercase;
   line-height: 0.85; letter-spacing: -0.02em;
@@ -998,14 +998,6 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
       </nav>
-      <div class="header__brand">
-        <a class="brandmark" href="#top" aria-label="Nikhil Gupta — home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5" /><path d="M8 15.5V12" /><path d="M12 15.5V8.5" /><path d="M16 15.5v-5" />
-          </svg>
-          <span>Nikhil Gupta</span>
-        </a>
-      </div>
       <div class="header__right">
         <button type="button" class="header__cta" data-open-modal>Get in touch</button>
         <button type="button" class="themebtn" data-theme-toggle aria-label="Switch colour theme">
@@ -1021,7 +1013,12 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
     </header>
 
     <div class="hero__titlewrap">
-      <span class="hero__kicker">Data Analyst &middot; Power BI &middot; SQL &middot; Capital Markets</span>
+      <span class="hero__kicker">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" /><path d="M8 15.5V12" /><path d="M12 15.5V8.5" /><path d="M16 15.5v-5" />
+        </svg>
+        <span>Data Analyst</span>
+      </span>
       <h1 id="hero-title" class="hero__title" data-words data-stagger="140" data-duration="1100" data-ease="expo" data-gate="ready">Nikhil Gupta</h1>
     </div>
 
