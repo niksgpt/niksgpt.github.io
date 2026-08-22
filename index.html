@@ -284,13 +284,6 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 .header__right { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; }
 @media (min-width: 640px) { .header__right { gap: 1.25rem; } }
 
-.header__cta {
-  display: none;
-  text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255, 255, 255, 0.9);
-}
-.header__cta:hover { text-decoration: underline; color: #ffffff; }
-@media (min-width: 640px) { .header__cta { display: inline-block; } }
-
 .burger {
   display: grid; place-items: center;
   width: 2.5rem; height: 2.5rem;
@@ -939,7 +932,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 }
 
 @media print {
-  .loader, .menu, .modal, .burger, .header__cta, .about__controls, .hero__actions { display: none !important; }
+  .loader, .menu, .modal, .burger, .about__controls, .hero__actions { display: none !important; }
   .clip__i, .wfade { transform: none !important; opacity: 1 !important; }
   .hero { height: auto !important; min-height: 0 !important; }
   main { padding: 0 !important; }
@@ -1003,7 +996,6 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
         <a href="#skills">Skills</a>
       </nav>
       <div class="header__right">
-        <button type="button" class="header__cta" data-open-modal>Get in touch</button>
         <button type="button" class="themebtn" data-theme-toggle aria-label="Switch colour theme">
           <span class="themebtn__i">
             <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" /></svg>
