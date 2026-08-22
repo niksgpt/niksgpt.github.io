@@ -19,6 +19,7 @@
 <script>
 /* Theme: stored choice wins, else follow the OS. Runs before first paint. */
 document.documentElement.classList.add("js");
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 (function () {
   try {
     var stored = localStorage.getItem("ng-theme");
@@ -1476,7 +1477,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
         <dd>
           <span class="stat__label">Years driving data-informed decisions</span>
           <span class="stat__value" data-count="3" data-prefix="" data-suffix="+">3+</span>
-          <span class="stat__note">Vardhaman 2023&ndash;26 &middot; Epic Research 2018&ndash;19</span>
+          <span class="stat__note">Vardhaman Global 2023&ndash;26 &middot; Epic Research 2018&ndash;19</span>
         </dd>
       </div>
       <div class="stat" data-stat="1">
@@ -2612,6 +2613,7 @@ function startCountdown() {
   setTimeout(finishLoading, minVisible);
 }
 
+window.addEventListener("load", () => window.scrollTo(0, 0), { once: true });
 if (document.readyState === "complete") startCountdown();
 else window.addEventListener("load", startCountdown);
 setTimeout(startCountdown, prefersReduced ? 400 : MAX_VISIBLE_MS);
