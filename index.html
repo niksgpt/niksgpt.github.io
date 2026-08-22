@@ -486,8 +486,8 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   display: flex; flex-direction: column; justify-content: space-between;
   padding: 1.25rem;
 }
-.metric__spark { position: absolute; left: 0; right: 0; bottom: 22%; height: 40%; opacity: 0.85; }
-.metric__spark polyline { stroke: var(--metric-line, var(--cat-a)); transition: stroke 0.5s ease; }
+.metric__viz { position: absolute; inset: 0; opacity: 0.9; }
+.metric__viz svg { display: block; width: 100%; height: 100%; }
 .metric__value { position: relative; font-size: 2.25rem; font-weight: 500; line-height: 1; letter-spacing: -0.02em; }
 .metric__cap {
   position: relative; border-radius: var(--radius-xl);
@@ -1118,10 +1118,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
       <div class="metric" id="metric">
         <figure class="metric__fig">
           <div class="metric__inner" id="metric-inner">
-            <svg class="metric__spark" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true">
-              <polyline points="0,86 25,74 50,79 75,58 100,62 125,40 150,44 175,22 200,10"
-                        fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-            </svg>
+            <div class="metric__viz" id="metric-viz"><svg viewBox="0 0 150 200" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="mgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--metric-line)" stop-opacity="0.55"/><stop offset="100%" stop-color="var(--metric-line)" stop-opacity="0"/></linearGradient></defs><path d="M0,140 L19,128 L38,133 L56,112 L75,117 L94,95 L113,100 L131,78 L150,66 L150,152 L0,152 Z" fill="url(#mgrad)"/><polyline points="0,140 19,128 38,133 56,112 75,117 94,95 113,100 131,78 150,66" fill="none" stroke="var(--metric-line)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></div>
             <span class="metric__value" id="metric-value">&#8377;100 Cr</span>
             <figcaption class="metric__cap">
               <span class="metric__label" id="metric-label">Fund deployed</span>
@@ -1609,10 +1606,6 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 
     <div class="footer__bottom">
       <p>&#169; 2026 Nikhil Gupta. All rights reserved.</p>
-      <nav aria-label="Social">
-        <a href="https://www.linkedin.com/in/nikhil-gupta1996/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:nikhil_gupta1996@hotmail.com">Email</a>
-      </nav>
     </div>
   </footer>
 </main>
@@ -2118,33 +2111,38 @@ onReady(() => {
 /* ------------------------------------------------------------
    About — signature wins carousel
    ------------------------------------------------------------ */
-const METRIC_LINE_UP = "0,86 25,74 50,79 75,58 100,62 125,40 150,44 175,22 200,10";
-const METRIC_LINE_DOWN = "0,10 25,22 50,18 75,40 100,36 125,58 150,54 175,76 200,86";
+/* one chart type per metric rather than the same line three times */
+const VIZ_AREA =
+  '<svg viewBox="0 0 150 200" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="mgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--metric-line)" stop-opacity="0.55"/><stop offset="100%" stop-color="var(--metric-line)" stop-opacity="0"/></linearGradient></defs><path d="M0,140 L19,128 L38,133 L56,112 L75,117 L94,95 L113,100 L131,78 L150,66 L150,152 L0,152 Z" fill="url(#mgrad)"/><polyline points="0,140 19,128 38,133 56,112 75,117 94,95 113,100 131,78 150,66" fill="none" stroke="var(--metric-line)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>';
+const VIZ_DONUT =
+  '<svg viewBox="0 0 150 200" aria-hidden="true"><g transform="translate(75,106)"><circle r="34.0" fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="13"/><circle r="34.0" fill="none" stroke="var(--metric-line)" stroke-width="13" stroke-linecap="round" stroke-dasharray="53.41 160.22" transform="rotate(-90)"/></g></svg>';
+const VIZ_COLUMNS =
+  '<svg viewBox="0 0 150 200" aria-hidden="true"><line x1="8" y1="150.6" x2="142" y2="150.6" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1"/><rect x="10" y="70" width="14" height="80" rx="2.5" fill="var(--metric-line)" fill-opacity="0.95"/><rect x="30" y="78" width="14" height="72" rx="2.5" fill="var(--metric-line)" fill-opacity="0.90"/><rect x="50" y="75" width="14" height="75" rx="2.5" fill="var(--metric-line)" fill-opacity="0.86"/><rect x="70" y="92" width="14" height="58" rx="2.5" fill="var(--metric-line)" fill-opacity="0.81"/><rect x="90" y="89" width="14" height="61" rx="2.5" fill="var(--metric-line)" fill-opacity="0.77"/><rect x="110" y="107" width="14" height="43" rx="2.5" fill="var(--metric-line)" fill-opacity="0.72"/><rect x="130" y="116" width="14" height="34" rx="2.5" fill="var(--metric-line)" fill-opacity="0.68"/></svg>';
 
 const WINS = [
   { words: ["Data", "Driven", "Decision", "Making"], value: "₹100 Cr", label: "Fund deployed",
     sub: "Within seven months of testing",
-    from: "#7d5115", to: "#241705", line: "var(--cat-a)", spark: METRIC_LINE_UP },
+    from: "#7d5115", to: "#241705", line: "var(--cat-a)", viz: VIZ_AREA },
   { words: ["Insight", "From", "Every", "Dataset"], value: "25%", label: "Annual ROI",
     sub: "Sustained across three years of trading",
-    from: "#8c3a33", to: "#2a100e", line: "var(--cat-c)", spark: METRIC_LINE_UP },
-  /* costs fell, so this one descends - an upward line here would read as growth */
+    from: "#8c3a33", to: "#2a100e", line: "var(--cat-c)", viz: VIZ_DONUT },
+  /* costs fell, so this one steps down - rising bars here would read as growth */
   { words: ["Built", "To", "Scale", "Fast"], value: "₹20 L", label: "Saved monthly",
     sub: "Data costs engineered away with VBA + SQL",
-    from: "#226b53", to: "#08241b", line: "var(--cat-b)", spark: METRIC_LINE_DOWN }
+    from: "#226b53", to: "#08241b", line: "var(--cat-b)", viz: VIZ_COLUMNS }
 ];
 
 const aboutSection = $(".about");
 const ghostWords = $$(".ghost__w");
 const metricInner = $("#metric-inner");
 const metricFig = $(".metric__fig");
-const metricLine = $(".metric__spark polyline");
+const metricViz = $("#metric-viz");
 
 function paintWin(slide) {
   metricFig.style.setProperty("--metric-1", slide.from);
   metricFig.style.setProperty("--metric-2", slide.to);
   metricFig.style.setProperty("--metric-line", slide.line);
-  metricLine.setAttribute("points", slide.spark);
+  metricViz.innerHTML = slide.viz;
 }
 const metricValue = $("#metric-value");
 const metricLabel = $("#metric-label");
