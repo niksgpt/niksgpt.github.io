@@ -465,10 +465,13 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   color: var(--ghost);
 }
 .ghost__row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.4em; }
+@media (max-width: 639px) {
+  .ghost__row { justify-content: flex-start; gap: 0.26em; }
+}
 .ghost__w { display: inline-block; overflow: hidden; padding-bottom: 0.12em; will-change: transform; }
 .ghost__w--ink { color: var(--ink); }
 
-.metric-anchor { position: relative; z-index: 10; display: flex; justify-content: center; margin-top: 3rem; }
+.metric-anchor { position: relative; z-index: 10; display: flex; justify-content: center; margin-top: 3rem; touch-action: pan-y; }
 @media (min-width: 640px) {
   .metric-anchor { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 16rem; margin-top: 0; }
 }
@@ -2227,6 +2230,36 @@ function setWin(next) {
 paintWin(WINS[0]);
 $("#about-prev").addEventListener("click", () => setWin(winIndex - 1));
 $("#about-next").addEventListener("click", () => setWin(winIndex + 1));
+
+/* Horizontal swipe on the card. Listeners stay passive so vertical scrolling
+   is never blocked; a gesture is only claimed when it is clearly sideways. */
+function onSwipe(el, onLeft, onRight) {
+  const MIN_DISTANCE = 40;   /* px, ignore taps and jitter */
+  const MAX_TIME = 800;      /* ms, a slow drag is not a swipe */
+  let x0 = null, y0 = 0, t0 = 0;
+  el.addEventListener("touchstart", (e) => {
+    const t = e.changedTouches[0];
+    x0 = t.clientX; y0 = t.clientY; t0 = Date.now();
+  }, { passive: true });
+  el.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - x0;
+    const dy = t.clientY - y0;
+    x0 = null;
+    if (Date.now() - t0 > MAX_TIME) return;
+    if (Math.abs(dx) < MIN_DISTANCE) return;
+    if (Math.abs(dx) < Math.abs(dy) * 1.5) return;   /* mostly vertical: scrolling */
+    if (dx < 0) onLeft(); else onRight();
+  }, { passive: true });
+}
+
+const metricAnchor = $(".metric-anchor");
+if (metricAnchor) {
+  onSwipe(metricAnchor,
+    () => setWin(winIndex + 1),    /* swipe left  -> next, wraps 3 back to 1 */
+    () => setWin(winIndex - 1));   /* swipe right -> previous */
+}
 
 /* ------------------------------------------------------------
    Experience / projects / stats / cards
