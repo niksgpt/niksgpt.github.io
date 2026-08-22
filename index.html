@@ -407,11 +407,21 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 
 /* profile card */
 .pcard { display: flex; align-items: stretch; gap: 0.75rem; width: 100%; max-width: 20rem; }
-@media (min-width: 640px) { .pcard { max-width: 18rem; } }
+@media (min-width: 640px) { .pcard { max-width: 19rem; } }
 .pcard__left { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 0.5rem; }
 .pcard__value { font-size: 1.875rem; font-weight: 500; line-height: 1; }
 .pcard__chips { display: flex; flex-wrap: wrap; gap: 0.25rem; }
-.pcard__chips span { font-size: 0.6rem; border-radius: var(--radius-pill); border: 1px solid rgba(255,255,255,0.25); padding: 0.125rem 0.5rem; }
+.pcard__chips span {
+  font-size: 0.7rem; font-weight: 500;
+  border-radius: var(--radius-pill); border: 0;
+  padding: 0.1875rem 0.4375rem;
+  color: #0b1a33;            /* dark ink: the palette fills are light */
+}
+/* one palette colour each, matching the charts elsewhere on the page */
+.pcard__chips span:nth-child(1) { background: var(--cat-a); }
+.pcard__chips span:nth-child(2) { background: var(--cat-b); }
+.pcard__chips span:nth-child(3) { background: var(--cat-c); }
+@media (min-width: 1025px) { .pcard__chips span { font-size: 0.8rem; } }
 .pcard__cap { font-size: 0.65rem; opacity: 0.8; }
 .pcard__photo {
   width: 6rem; flex: none; aspect-ratio: 3 / 4;
