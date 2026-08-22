@@ -29,7 +29,7 @@ document.documentElement.classList.add("js");
 })();
 /* Adaptive rem grid — scale-up above the 1920 design width (media queries handle scale-down). */
 (function () {
-  var FONT_BASE = 16, BASE_W = 1920, COEF = 0.6666, h = document.documentElement;
+  var FONT_BASE = 17.6, BASE_W = 1920, COEF = 0.6666, h = document.documentElement;
   function apply() {
     var reduction = ((BASE_W - window.innerWidth) / BASE_W) * 100 * COEF;
     var size = FONT_BASE - (FONT_BASE * reduction) / 100;
@@ -126,9 +126,10 @@ body, .hero, .stats, .footer, .exp, .projects, .cards, .about,
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 
-html { font-size: 16px; -webkit-text-size-adjust: 100%; }
-@media (max-width: 1920px) { html { font-size: 0.833333vw; } }
-@media (max-width: 1440px) { html { font-size: 1.111111vw; } }
+/* desktop root scale carries a 1.1x bump; tablet and mobile keep the original grid */
+html { font-size: 17.6px; -webkit-text-size-adjust: 100%; }
+@media (max-width: 1920px) { html { font-size: 0.9166663vw; } }
+@media (max-width: 1440px) { html { font-size: 1.2222221vw; } }
 @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
 @media (max-width: 640px)  { html { font-size: 4.444444vw; } }
 
