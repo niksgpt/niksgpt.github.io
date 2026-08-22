@@ -441,13 +441,8 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   will-change: transform, opacity;
 }
 @media (min-width: 640px) { .summary { gap: 1.25rem; padding: 1.5rem; } }
-.summary__chip {
-  align-self: flex-start; flex: none;
-  border-radius: var(--radius-xl); background: var(--background);
-  padding: 0.5rem 1rem; font-size: 1.25rem; font-weight: 500;
-}
-.summary h3 { font-size: 1.125rem; font-weight: 500; }
-.summary p { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.7; margin-top: 0.5rem; }
+.summary h3 { font-size: 1.2375rem; font-weight: 500; }   /* 1.125rem x 1.1 */
+.summary p { font-size: 0.89375rem; color: var(--ink-soft); line-height: 1.7; margin-top: 0.5rem; }   /* 0.8125rem x 1.1 */
 
 .ghost {
   position: relative; z-index: 0;
@@ -537,6 +532,12 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 }
 .bullets b { color: var(--ink); font-weight: 500; }
 .exp__bullets { margin-top: 1.25rem; max-width: 58rem; }
+/* Desktop: bullets fill the row except a reserved column under the dates, which
+   stays blank the whole way down. Applies to every role, work and internship. */
+@media (min-width: 1025px) {
+  .exp__bullets { max-width: calc(100% - 12rem); }
+  .exp__bullets li { font-size: calc(0.875rem + 2px); }
+}
 
 /* ---- career Gantt ------------------------------------------- */
 .gantt {
@@ -1067,7 +1068,6 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   <section class="about" aria-labelledby="about-title">
     <div class="about__top">
       <article class="summary" id="summary-card">
-        <span class="summary__chip">#01</span>
         <div>
           <h3>Data-informed decisions, end to end</h3>
           <p>Experienced analyst with over 3 years of proven expertise in driving data-informed decision-making and organizational growth. Adept at financial analysis, performance reporting, and business insight generation using tools like Power BI, Excel and SQL. Skilled in cross-functional collaboration, stakeholder management, and streamlining reporting processes to improve operational efficiency. Passionate about transforming complex data into actionable strategies that support leadership and accelerate business outcomes.</p>
