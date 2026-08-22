@@ -594,6 +594,13 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   font-size: 0.625rem; color: var(--ink-soft);
   transform: translateX(-50%); white-space: nowrap;
 }
+/* narrow screens get two-digit years, or the ticks collide */
+.gantt__tick .t-long { display: none; }
+.gantt__tick .t-short { display: inline; }
+@media (min-width: 1025px) {
+  .gantt__tick .t-long { display: inline; }
+  .gantt__tick .t-short { display: none; }
+}
 .gantt__tick:first-child { transform: none; }
 .gantt__tick:last-child { transform: translateX(-100%); }
 
@@ -1189,15 +1196,15 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
         </div>
       </div>
       <div class="gantt__axis">
-        <span class="gantt__tick" style="left:0.000%">2018</span>
-        <span class="gantt__tick" style="left:11.111%">2019</span>
-        <span class="gantt__tick" style="left:22.222%">2020</span>
-        <span class="gantt__tick" style="left:33.333%">2021</span>
-        <span class="gantt__tick" style="left:44.444%">2022</span>
-        <span class="gantt__tick" style="left:55.556%">2023</span>
-        <span class="gantt__tick" style="left:66.667%">2024</span>
-        <span class="gantt__tick" style="left:77.778%">2025</span>
-        <span class="gantt__tick" style="left:88.889%">2026</span>
+        <span class="gantt__tick" style="left:0.000%"><span class="t-long">2018</span><span class="t-short">&#8217;18</span></span>
+        <span class="gantt__tick" style="left:11.111%"><span class="t-long">2019</span><span class="t-short">&#8217;19</span></span>
+        <span class="gantt__tick" style="left:22.222%"><span class="t-long">2020</span><span class="t-short">&#8217;20</span></span>
+        <span class="gantt__tick" style="left:33.333%"><span class="t-long">2021</span><span class="t-short">&#8217;21</span></span>
+        <span class="gantt__tick" style="left:44.444%"><span class="t-long">2022</span><span class="t-short">&#8217;22</span></span>
+        <span class="gantt__tick" style="left:55.556%"><span class="t-long">2023</span><span class="t-short">&#8217;23</span></span>
+        <span class="gantt__tick" style="left:66.667%"><span class="t-long">2024</span><span class="t-short">&#8217;24</span></span>
+        <span class="gantt__tick" style="left:77.778%"><span class="t-long">2025</span><span class="t-short">&#8217;25</span></span>
+        <span class="gantt__tick" style="left:88.889%"><span class="t-long">2026</span><span class="t-short">&#8217;26</span></span>
       </div>
     </figure>
 
