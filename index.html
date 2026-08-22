@@ -61,6 +61,11 @@ document.documentElement.classList.add("js");
   --on-brand: #ffffff;
 
   /* rgb triplets so alpha tints can follow the theme */
+  /* categorical palette - deliberately identical in both themes */
+  --cat-a: #e8a33d;
+  --cat-b: #4fb286;
+  --cat-c: #e8695f;
+
   --navy-rgb: 15, 47, 99;
   --teal-rgb: 11, 110, 151;
   --chart: #5790e6;
@@ -474,8 +479,9 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 .metric__fig {
   position: relative; transform: rotate(6deg);
   aspect-ratio: 3 / 4; border-radius: var(--radius-card); overflow: hidden;
-  background: linear-gradient(160deg, var(--brand) 0%, var(--brand-deep) 100%);
+  background: linear-gradient(160deg, var(--metric-1, #7d5115) 0%, var(--metric-2, #241705) 100%);
   color: #ffffff;
+  transition: background 0.5s ease;
   box-shadow: 0 1.5rem 3rem rgba(var(--navy-rgb), 0.28);
 }
 .metric__inner {
@@ -483,7 +489,8 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   display: flex; flex-direction: column; justify-content: space-between;
   padding: 1.25rem;
 }
-.metric__spark { position: absolute; left: 0; right: 0; bottom: 22%; height: 40%; opacity: 0.45; }
+.metric__spark { position: absolute; left: 0; right: 0; bottom: 22%; height: 40%; opacity: 0.85; }
+.metric__spark polyline { stroke: var(--metric-line, var(--cat-a)); transition: stroke 0.5s ease; }
 .metric__value { position: relative; font-size: 2.25rem; font-weight: 500; line-height: 1; letter-spacing: -0.02em; }
 .metric__cap {
   position: relative; border-radius: var(--radius-xl);
@@ -554,8 +561,9 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 .gantt__legend { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.7rem; color: var(--ink-soft); }
 .gantt__legend span { display: inline-flex; align-items: center; gap: 0.375rem; }
 .gantt__legend i { width: 0.75rem; height: 0.5rem; border-radius: 0.125rem; }
-.gantt__key-work { background: var(--brand); }
-.gantt__key-edu { background: transparent; border: 1px solid var(--brand-light); }
+.gantt__key-full { background: var(--cat-a); }
+.gantt__key-intern { background: var(--cat-b); }
+.gantt__key-edu { background: transparent; border: 1px solid var(--cat-c); }
 
 .gantt__rows { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .gantt__row { display: grid; grid-template-columns: 1fr; gap: 0.25rem; }
@@ -571,13 +579,14 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   position: absolute; top: 0; bottom: 0;
   min-width: 0.375rem;
   border-radius: 0.25rem;
-  background: var(--brand);
+  background: var(--cat-a);
   transform-origin: left;
   transition: transform 0.9s var(--ease-expo);
 }
 .js .gantt__bar { transform: scaleX(0); }
 .js .gantt__bar.is-in { transform: scaleX(1); }
-.gantt__bar--edu { background: transparent; border: 1px solid var(--brand-light); }
+.gantt__bar--intern { background: var(--cat-b); }
+.gantt__bar--edu { background: transparent; border: 1px solid var(--cat-c); }
 .gantt__axis {
   position: relative; height: 1.25rem; margin-top: 0.5rem;
   border-top: 1px solid var(--hairline);
@@ -625,7 +634,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 .sbar__track { height: 0.5rem; border-radius: var(--radius-pill); background: var(--background); overflow: hidden; }
 .sbar__fill {
   display: block; height: 100%; width: var(--w); border-radius: var(--radius-pill);
-  background: var(--brand);
+  background: var(--cat-a);
   transform-origin: left;
   transition: transform 0.9s var(--ease-expo);
 }
@@ -1099,7 +1108,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
           <div class="metric__inner" id="metric-inner">
             <svg class="metric__spark" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true">
               <polyline points="0,86 25,74 50,79 75,58 100,62 125,40 150,44 175,22 200,10"
-                        fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                        fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" />
             </svg>
             <span class="metric__value" id="metric-value">&#8377;100 Cr</span>
             <figcaption class="metric__cap">
@@ -1141,7 +1150,8 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
       <div class="gantt__head">
         <figcaption class="gantt__title">Career timeline</figcaption>
         <div class="gantt__legend">
-          <span><i class="gantt__key-work"></i>Work</span>
+          <span><i class="gantt__key-full"></i>Full-time</span>
+          <span><i class="gantt__key-intern"></i>Internship</span>
           <span><i class="gantt__key-edu"></i>Education</span>
         </div>
       </div>
@@ -1155,13 +1165,13 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
         <div class="gantt__row">
           <span class="gantt__label">Finviral<small>Equity Analyst</small></span>
           <span class="gantt__track">
-            <span class="gantt__bar" data-bar style="left:53.704%;width:1.852%" title="Nov 2022 to Dec 2022"></span>
+            <span class="gantt__bar gantt__bar--intern" data-bar style="left:53.704%;width:1.852%" title="Nov 2022 to Dec 2022"></span>
           </span>
         </div>
         <div class="gantt__row">
           <span class="gantt__label">RBeI<small>Finance Intern</small></span>
           <span class="gantt__track">
-            <span class="gantt__bar" data-bar style="left:37.037%;width:2.778%" title="May 2021 to Jul 2021"></span>
+            <span class="gantt__bar gantt__bar--intern" data-bar style="left:37.037%;width:2.778%" title="May 2021 to Jul 2021"></span>
           </span>
         </div>
         <div class="gantt__row">
@@ -1314,22 +1324,22 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
           <div class="proj__visual">
             <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <text x="12" y="19" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.4" fill="rgba(255,255,255,0.45)" letter-spacing="1.2">SCHEMA &#183; 10 TABLES</text>
-            <g fill="none" stroke-width="1"><path d="M102 51 H108 V85 H115" stroke="#e8a33d" stroke-opacity="0.6" /><path d="M308 51 H313 V97 H207" stroke="#e8695f" stroke-opacity="0.6" /></g><circle cx="102" cy="51" r="1.7" fill="#e8a33d" /><circle cx="115" cy="85" r="1.7" fill="#e8a33d" /><circle cx="308" cy="51" r="1.7" fill="#e8695f" /><circle cx="207" cy="97" r="1.7" fill="#e8695f" />
+            <g fill="none" stroke-width="1"><path d="M102 51 H108 V85 H115" stroke="var(--cat-a)" stroke-opacity="0.6" /><path d="M308 51 H313 V97 H207" stroke="var(--cat-c)" stroke-opacity="0.6" /></g><circle cx="102" cy="51" r="1.7" fill="var(--cat-a)" /><circle cx="115" cy="85" r="1.7" fill="var(--cat-a)" /><circle cx="308" cy="51" r="1.7" fill="var(--cat-c)" /><circle cx="207" cy="97" r="1.7" fill="var(--cat-c)" />
             <g>
-            <rect x="12" y="30" width="90" height="55" rx="5" fill="rgba(255,255,255,0.05)" stroke="#e8a33d" stroke-opacity="0.5" stroke-width="1" />
-            <path d="M12 45 V35 A5 5 0 0 1 17 30 H97 A5 5 0 0 1 102 35 V45 Z" fill="#e8a33d" fill-opacity="0.92" />
+            <rect x="12" y="30" width="90" height="55" rx="5" fill="rgba(255,255,255,0.05)" stroke="var(--cat-a)" stroke-opacity="0.5" stroke-width="1" />
+            <path d="M12 45 V35 A5 5 0 0 1 17 30 H97 A5 5 0 0 1 102 35 V45 Z" fill="var(--cat-a)" fill-opacity="0.92" />
             <text x="19" y="40.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="7.5" font-weight="600" fill="#0b1a33" letter-spacing="0.4">shopkeepers</text>
             <text x="19" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">id</text>
-            <text x="96" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="#e8a33d" letter-spacing="0.3">PK</text>
+            <text x="96" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="var(--cat-a)" letter-spacing="0.3">PK</text>
             <text x="19" y="65.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">name</text>
             <text x="19" y="77.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">phone</text>
             </g>
             <g>
-            <rect x="115" y="52" width="92" height="67" rx="5" fill="rgba(255,255,255,0.05)" stroke="#4fb286" stroke-opacity="0.5" stroke-width="1" />
-            <path d="M115 67 V57 A5 5 0 0 1 120 52 H202 A5 5 0 0 1 207 57 V67 Z" fill="#4fb286" fill-opacity="0.92" />
+            <rect x="115" y="52" width="92" height="67" rx="5" fill="rgba(255,255,255,0.05)" stroke="var(--cat-b)" stroke-opacity="0.5" stroke-width="1" />
+            <path d="M115 67 V57 A5 5 0 0 1 120 52 H202 A5 5 0 0 1 207 57 V67 Z" fill="var(--cat-b)" fill-opacity="0.92" />
             <text x="122" y="62.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="7.5" font-weight="600" fill="#0b1a33" letter-spacing="0.4">transactions</text>
             <text x="122" y="75.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">id</text>
-            <text x="201" y="75.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="#4fb286" letter-spacing="0.3">PK</text>
+            <text x="201" y="75.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="var(--cat-b)" letter-spacing="0.3">PK</text>
             <text x="122" y="87.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">shop_id</text>
             <text x="201" y="87.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="rgba(255,255,255,0.42)" letter-spacing="0.3">FK</text>
             <text x="122" y="99.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">customer_id</text>
@@ -1337,11 +1347,11 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
             <text x="122" y="111.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">amount</text>
             </g>
             <g>
-            <rect x="220" y="30" width="88" height="55" rx="5" fill="rgba(255,255,255,0.05)" stroke="#e8695f" stroke-opacity="0.5" stroke-width="1" />
-            <path d="M220 45 V35 A5 5 0 0 1 225 30 H303 A5 5 0 0 1 308 35 V45 Z" fill="#e8695f" fill-opacity="0.92" />
+            <rect x="220" y="30" width="88" height="55" rx="5" fill="rgba(255,255,255,0.05)" stroke="var(--cat-c)" stroke-opacity="0.5" stroke-width="1" />
+            <path d="M220 45 V35 A5 5 0 0 1 225 30 H303 A5 5 0 0 1 308 35 V45 Z" fill="var(--cat-c)" fill-opacity="0.92" />
             <text x="227" y="40.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="7.5" font-weight="600" fill="#0b1a33" letter-spacing="0.4">customers</text>
             <text x="227" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">id</text>
-            <text x="302" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="#e8695f" letter-spacing="0.3">PK</text>
+            <text x="302" y="53.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="var(--cat-c)" letter-spacing="0.3">PK</text>
             <text x="227" y="65.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">shop_id</text>
             <text x="302" y="65.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="5.4" text-anchor="end" fill="rgba(255,255,255,0.42)" letter-spacing="0.3">FK</text>
             <text x="227" y="77.5" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="6.6" fill="rgba(255,255,255,0.74)">name</text>
@@ -1372,21 +1382,21 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
             <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <g><rect x="16" y="14" width="60" height="13" rx="6.5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" /><text x="46.0" y="22.8" font-size="6.2" text-anchor="middle" fill="rgba(255,255,255,0.8)">Apr &#8211; Jun 2022</text></g>
             <g><rect x="80" y="14" width="62" height="13" rx="6.5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" /><text x="111.0" y="22.8" font-size="6.2" text-anchor="middle" fill="rgba(255,255,255,0.8)">BSE 500 index</text></g>
-            <g><rect x="196" y="16" width="8" height="8" rx="2" fill="#e8a33d" fill-opacity="1" /><text x="208" y="22.8" font-size="6.2" fill="rgba(255,255,255,0.7)">Portfolio</text></g>
-            <g><rect x="252" y="16" width="8" height="8" rx="2" fill="#4fb286" fill-opacity="0.85" /><text x="264" y="22.8" font-size="6.2" fill="rgba(255,255,255,0.7)">Index</text></g>
+            <g><rect x="196" y="16" width="8" height="8" rx="2" fill="var(--cat-a)" fill-opacity="1" /><text x="208" y="22.8" font-size="6.2" fill="rgba(255,255,255,0.7)">Portfolio</text></g>
+            <g><rect x="252" y="16" width="8" height="8" rx="2" fill="var(--cat-b)" fill-opacity="0.85" /><text x="264" y="22.8" font-size="6.2" fill="rgba(255,255,255,0.7)">Index</text></g>
             <g><line x1="16" y1="128" x2="304" y2="128" stroke="#ffffff" stroke-opacity="0.1" stroke-width="0.7" /><line x1="16" y1="101" x2="304" y2="101" stroke="#ffffff" stroke-opacity="0.1" stroke-width="0.7" /><line x1="16" y1="74" x2="304" y2="74" stroke="#ffffff" stroke-opacity="0.1" stroke-width="0.7" /><line x1="16" y1="46" x2="304" y2="46" stroke="#ffffff" stroke-opacity="0.1" stroke-width="0.7" /></g>
-            <rect x="28.0" y="82.0" width="10" height="46" rx="2" fill="#e8a33d" />
-            <rect x="42.0" y="90.0" width="10" height="38" rx="2" fill="#4fb286" fill-opacity="0.85" />
-            <rect x="76.0" y="70.0" width="10" height="58" rx="2" fill="#e8a33d" />
-            <rect x="90.0" y="85.0" width="10" height="43" rx="2" fill="#4fb286" fill-opacity="0.85" />
-            <rect x="124.0" y="89.0" width="10" height="39" rx="2" fill="#e8a33d" />
-            <rect x="138.0" y="83.0" width="10" height="45" rx="2" fill="#4fb286" fill-opacity="0.85" />
-            <rect x="172.0" y="58.0" width="10" height="70" rx="2" fill="#e8a33d" />
-            <rect x="186.0" y="78.0" width="10" height="50" rx="2" fill="#4fb286" fill-opacity="0.85" />
-            <rect x="220.0" y="73.0" width="10" height="55" rx="2" fill="#e8a33d" />
-            <rect x="234.0" y="80.0" width="10" height="48" rx="2" fill="#4fb286" fill-opacity="0.85" />
-            <rect x="268.0" y="52.0" width="10" height="76" rx="2" fill="#e8a33d" />
-            <rect x="282.0" y="72.0" width="10" height="56" rx="2" fill="#4fb286" fill-opacity="0.85" />
+            <rect x="28.0" y="82.0" width="10" height="46" rx="2" fill="var(--cat-a)" />
+            <rect x="42.0" y="90.0" width="10" height="38" rx="2" fill="var(--cat-b)" fill-opacity="0.85" />
+            <rect x="76.0" y="70.0" width="10" height="58" rx="2" fill="var(--cat-a)" />
+            <rect x="90.0" y="85.0" width="10" height="43" rx="2" fill="var(--cat-b)" fill-opacity="0.85" />
+            <rect x="124.0" y="89.0" width="10" height="39" rx="2" fill="var(--cat-a)" />
+            <rect x="138.0" y="83.0" width="10" height="45" rx="2" fill="var(--cat-b)" fill-opacity="0.85" />
+            <rect x="172.0" y="58.0" width="10" height="70" rx="2" fill="var(--cat-a)" />
+            <rect x="186.0" y="78.0" width="10" height="50" rx="2" fill="var(--cat-b)" fill-opacity="0.85" />
+            <rect x="220.0" y="73.0" width="10" height="55" rx="2" fill="var(--cat-a)" />
+            <rect x="234.0" y="80.0" width="10" height="48" rx="2" fill="var(--cat-b)" fill-opacity="0.85" />
+            <rect x="268.0" y="52.0" width="10" height="76" rx="2" fill="var(--cat-a)" />
+            <rect x="282.0" y="72.0" width="10" height="56" rx="2" fill="var(--cat-b)" fill-opacity="0.85" />
             <line x1="16" y1="128" x2="304" y2="128" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1" />
           </svg>
             <figcaption class="proj__cap proj__cap--b">
@@ -2101,15 +2111,34 @@ onReady(() => {
 /* ------------------------------------------------------------
    About — signature wins carousel
    ------------------------------------------------------------ */
+const METRIC_LINE_UP = "0,86 25,74 50,79 75,58 100,62 125,40 150,44 175,22 200,10";
+const METRIC_LINE_DOWN = "0,10 25,22 50,18 75,40 100,36 125,58 150,54 175,76 200,86";
+
 const WINS = [
-  { words: ["Data", "Driven", "Decision", "Making"], value: "₹100 Cr", label: "Fund deployed", sub: "Within seven months of testing" },
-  { words: ["Insight", "From", "Every", "Dataset"], value: "25%", label: "Annual ROI", sub: "Sustained across three years of trading" },
-  { words: ["Built", "To", "Scale", "Fast"], value: "₹20 L", label: "Saved monthly", sub: "Data costs engineered away with VBA + SQL" }
+  { words: ["Data", "Driven", "Decision", "Making"], value: "₹100 Cr", label: "Fund deployed",
+    sub: "Within seven months of testing",
+    from: "#7d5115", to: "#241705", line: "var(--cat-a)", spark: METRIC_LINE_UP },
+  { words: ["Insight", "From", "Every", "Dataset"], value: "25%", label: "Annual ROI",
+    sub: "Sustained across three years of trading",
+    from: "#8c3a33", to: "#2a100e", line: "var(--cat-c)", spark: METRIC_LINE_UP },
+  /* costs fell, so this one descends - an upward line here would read as growth */
+  { words: ["Built", "To", "Scale", "Fast"], value: "₹20 L", label: "Saved monthly",
+    sub: "Data costs engineered away with VBA + SQL",
+    from: "#226b53", to: "#08241b", line: "var(--cat-b)", spark: METRIC_LINE_DOWN }
 ];
 
 const aboutSection = $(".about");
 const ghostWords = $$(".ghost__w");
 const metricInner = $("#metric-inner");
+const metricFig = $(".metric__fig");
+const metricLine = $(".metric__spark polyline");
+
+function paintWin(slide) {
+  metricFig.style.setProperty("--metric-1", slide.from);
+  metricFig.style.setProperty("--metric-2", slide.to);
+  metricFig.style.setProperty("--metric-line", slide.line);
+  metricLine.setAttribute("points", slide.spark);
+}
 const metricValue = $("#metric-value");
 const metricLabel = $("#metric-label");
 const metricSub = $("#metric-sub");
@@ -2144,6 +2173,7 @@ function setWin(next) {
   metricValue.textContent = slide.value;
   metricLabel.textContent = slide.label;
   metricSub.textContent = slide.sub;
+  paintWin(slide);
   metricFade.jump({ opacity: 0 });
   metricFade.set({ opacity: 1 });
 
@@ -2152,6 +2182,7 @@ function setWin(next) {
   updateWinDots(index);
 }
 
+paintWin(WINS[0]);
 $("#about-prev").addEventListener("click", () => setWin(winIndex - 1));
 $("#about-next").addEventListener("click", () => setWin(winIndex + 1));
 
