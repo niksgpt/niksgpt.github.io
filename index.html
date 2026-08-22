@@ -832,8 +832,24 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   will-change: transform, opacity;
 }
 .loader__mark svg { width: 1.75rem; height: 1.75rem; }
-.loader__track { width: 10rem; height: 1px; border-radius: var(--radius-pill); background: rgba(255, 255, 255, 0.2); overflow: hidden; }
+.loader__bars { display: flex; align-items: flex-end; gap: 0.4rem; height: 2.5rem; }
+.loader__bars i {
+  display: block; width: 0.625rem; border-radius: 0.1875rem;
+  transform-origin: bottom;
+  transition: transform 0.5s var(--ease-expo);
+}
+.js .loader__bars i { transform: scaleY(0); }
+.js .loader__bars i.is-in { transform: scaleY(1); }
+
+.loader__meter { width: 12rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.loader__track { width: 100%; height: 1px; border-radius: var(--radius-pill); background: rgba(255, 255, 255, 0.2); overflow: hidden; }
 .loader__fill { width: 100%; height: 100%; background: #ffffff; transform: scaleX(0); transform-origin: left; }
+.loader__meta {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem;
+  font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.66);
+}
+.loader__pct { font-variant-numeric: tabular-nums; flex: none; }
 
 /* ============================================================
    Contact modal
@@ -965,6 +981,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 </style>
 </head>
 <body>
+<noscript><style>.loader { display: none; }</style></noscript>
 
 <!-- ============================ Loader ============================ -->
 <div class="loader" id="loader">
@@ -974,7 +991,20 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
     </svg>
     <span>Nikhil Gupta</span>
   </div>
-  <div class="loader__track"><div class="loader__fill" id="loader-fill"></div></div>
+  <div class="loader__bars" aria-hidden="true">
+      <i style="height:1.25rem;background:var(--cat-a)"></i>
+      <i style="height:1.95rem;background:var(--cat-b)"></i>
+      <i style="height:0.9rem;background:var(--cat-c)"></i>
+      <i style="height:2.4rem;background:var(--cat-a)"></i>
+      <i style="height:1.6rem;background:var(--cat-b)"></i>
+  </div>
+  <div class="loader__meter">
+    <div class="loader__track"><div class="loader__fill" id="loader-fill"></div></div>
+    <div class="loader__meta">
+      <span class="loader__status" id="loader-status">Connecting to source</span>
+      <span class="loader__pct" id="loader-pct">0%</span>
+    </div>
+  </div>
 </div>
 
 <main id="top">
@@ -2520,12 +2550,47 @@ loaderFill.style.transition = "transform " + fillDuration + "ms " + EASE.inOutCu
 void loaderFill.offsetWidth;
 loaderFill.style.transform = "scaleX(1)";
 
+/* the report-loading sequence: bars, status phases, percentage */
+const loaderBars = $$(".loader__bars i");
+const loaderStatus = $("#loader-status");
+const loaderPct = $("#loader-pct");
+const LOADER_PHASES = ["Connecting to source", "Loading dataset", "Rendering visuals", "Ready"];
+const loaderTimers = [];
+let pctTimer = null;
+
+if (prefersReduced) {
+  loaderBars.forEach((b) => b.classList.add("is-in"));
+  loaderStatus.textContent = LOADER_PHASES[LOADER_PHASES.length - 1];
+  loaderPct.textContent = "100%";
+} else {
+  loaderBars.forEach((bar, i) => {
+    loaderTimers.push(setTimeout(() => bar.classList.add("is-in"), 300 + i * 100));
+  });
+  LOADER_PHASES.forEach((phase, i) => {
+    loaderTimers.push(setTimeout(() => { loaderStatus.textContent = phase; },
+      Math.round((minVisible / LOADER_PHASES.length) * i)));
+  });
+  /* timer-driven, not rAF: a busy first paint can starve frames, and a
+     counter frozen at 0% would look worse than none at all */
+  const pctStart = Date.now();
+  pctTimer = setInterval(() => {
+    const t = Math.min((Date.now() - pctStart) / minVisible, 1);
+    const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    loaderPct.textContent = Math.round(eased * 100) + "%";
+    if (t >= 1) { clearInterval(pctTimer); pctTimer = null; }
+  }, 40);
+}
+
 let countdownStarted = false;
 let finished = false;
 
 function finishLoading() {
   if (finished) return;
   finished = true;
+  while (loaderTimers.length) clearTimeout(loaderTimers.pop());
+  if (pctTimer) { clearInterval(pctTimer); pctTimer = null; }
+  loaderPct.textContent = "100%";
+  loaderStatus.textContent = LOADER_PHASES[LOADER_PHASES.length - 1];
   isReady = true;
   readyQueue.splice(0).forEach((fn) => fn());
   unlockScroll();
