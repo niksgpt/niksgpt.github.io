@@ -462,20 +462,8 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   font-size: 8.2vw; font-weight: 500; text-transform: uppercase;
   line-height: 1.02; letter-spacing: -0.02em;
   color: var(--ghost);
-  display: grid; grid-template-columns: auto auto;
-  justify-content: space-between; align-items: baseline;
 }
-/* Four words on a 2x2 grid. Placement flips at the breakpoint where the
-   metric card starts sitting between the columns: with the card there the
-   eye reads down each column, without it the eye reads across each row. */
-.ghost__w:nth-child(1) { grid-area: 1 / 1; }
-.ghost__w:nth-child(2) { grid-area: 1 / 2; }
-.ghost__w:nth-child(3) { grid-area: 2 / 1; }
-.ghost__w:nth-child(4) { grid-area: 2 / 2; }
-@media (min-width: 640px) {
-  .ghost__w:nth-child(2) { grid-area: 2 / 1; }
-  .ghost__w:nth-child(3) { grid-area: 1 / 2; }
-}
+.ghost__row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.4em; }
 .ghost__w { display: inline-block; overflow: hidden; padding-bottom: 0.12em; will-change: transform; }
 .ghost__w--ink { color: var(--ink); }
 
@@ -1146,10 +1134,14 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
     </div>
 
     <h2 id="about-title" class="ghost">
-      <span class="ghost__w" data-px="-3,3"><span class="clip__i">Data</span></span>
-      <span class="ghost__w" data-px="-2,4"><span class="clip__i">Driven</span></span>
-      <span class="ghost__w" data-px="3,-3"><span class="clip__i">Decision</span></span>
-      <span class="ghost__w ghost__w--ink" data-px="4,-3"><span class="clip__i">Making</span></span>
+      <span class="ghost__row">
+        <span class="ghost__w" data-px="-3,3"><span class="clip__i">Data</span></span>
+        <span class="ghost__w" data-px="3,-3"><span class="clip__i">Driven</span></span>
+      </span>
+      <span class="ghost__row">
+        <span class="ghost__w ghost__w--ink" data-px="-2,4"><span class="clip__i">Decision</span></span>
+        <span class="ghost__w" data-px="4,-3"><span class="clip__i">Making</span></span>
+      </span>
     </h2>
 
     <div class="metric-anchor">
