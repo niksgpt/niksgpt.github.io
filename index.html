@@ -116,7 +116,7 @@ document.documentElement.classList.add("js");
 html { color-scheme: light; }
 :root[data-theme="dark"] { color-scheme: dark; }
 body, .hero, .stats, .footer, .exp, .projects, .cards, .about,
-.summary, .ecard__inner, .proj__card, .pctbadge, .chip, .modal__panel {
+.summary, .ecard__inner, .proj__card, .chip, .modal__panel {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
@@ -433,16 +433,6 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 
 .about__top { position: relative; z-index: 20; display: flex; flex-direction: column; gap: 2rem; }
 @media (min-width: 640px) { .about__top { flex-direction: row; align-items: flex-start; justify-content: space-between; } }
-
-.pctbadge {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-  width: 7rem; height: 7rem; flex: none;
-  border-radius: var(--radius-pill); background: var(--surface); padding: 0.75rem;
-  will-change: transform, opacity;
-}
-@media (min-width: 640px) { .pctbadge { width: 8rem; height: 8rem; } }
-.pctbadge b { font-size: 1.5rem; font-weight: 500; line-height: 1; }
-.pctbadge span { font-size: 0.6rem; color: var(--ink-soft); max-width: 8em; margin-top: 0.375rem; line-height: 1.35; }
 
 .summary {
   display: flex; gap: 1rem; max-width: 34rem;
@@ -1075,10 +1065,6 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   <!-- ============================ About ============================ -->
   <section class="about" aria-labelledby="about-title">
     <div class="about__top">
-      <div class="pctbadge" id="pct-badge">
-        <b>25%</b>
-        <span>Average annual ROI delivered</span>
-      </div>
       <article class="summary" id="summary-card">
         <span class="summary__chip">#01</span>
         <div>
@@ -2151,7 +2137,6 @@ function playGhostWords() {
   });
 }
 
-inview($("#pct-badge"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1 }, { tension: 220, friction: 22 });
 inview($("#summary-card"), { opacity: 0, y: 24 }, { opacity: 1, y: 0 }, { tension: 200, friction: 26 }, 120);
 inview($("#metric"), { opacity: 0, y: 60, scale: 0.92 }, { opacity: 1, y: 0, scale: 1 }, { tension: 170, friction: 26 });
 
