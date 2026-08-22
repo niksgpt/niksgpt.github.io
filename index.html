@@ -440,9 +440,9 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 .about {
   position: relative; isolation: isolate; overflow: hidden;
   background: var(--background);
-  padding: 4rem 1.5rem;
+  padding: 4rem 1.5rem 2rem;          /* bottom halved: 4rem -> 2rem */
 }
-@media (min-width: 640px) { .about { padding: 5rem 2.5rem; } }
+@media (min-width: 640px) { .about { padding: 5rem 2.5rem 2.5rem; } }   /* 5rem -> 2.5rem */
 
 .about__top { position: relative; z-index: 20; display: flex; flex-direction: column; gap: 2rem; }
 @media (min-width: 640px) { .about__top { flex-direction: row; align-items: flex-start; justify-content: space-between; } }
@@ -512,8 +512,8 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 /* ============================================================
    Experience
    ============================================================ */
-.exp { background: var(--surface); padding: 6rem 1.5rem; }
-@media (min-width: 640px) { .exp { padding: 6rem 2.5rem; } }
+.exp { background: var(--surface); padding: 3rem 1.5rem 6rem; }        /* top halved: 6rem -> 3rem */
+@media (min-width: 640px) { .exp { padding: 3rem 2.5rem 6rem; } }
 .exp__list { margin-top: 0; }
 .exp__groups { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 3.5rem; }
 .exp__group { display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: start; }
@@ -1187,7 +1187,6 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 
   <!-- ============================ Experience ============================ -->
   <section class="exp" id="experience" aria-labelledby="exp-title">
-    <span class="eyebrow eyebrow--dark">Work experience</span>
     <h2 id="exp-title" class="section__title" data-lines="Where I have|worked">Where I have worked</h2>
     <div class="sqlblock">
       <div class="sqlblock__bar"><span class="sqlblock__dot"></span>query</div>
