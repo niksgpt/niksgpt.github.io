@@ -524,6 +524,13 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 .exp__list > li:last-child .exp__item { border-bottom: 1px solid var(--hairline); }
 .exp__row { display: flex; gap: 1.5rem; padding: 2.25rem 0; will-change: transform, opacity; }
 .exp__num { width: 2.5rem; flex: none; font-size: 0.875rem; font-weight: 500; color: var(--ink-soft); padding-top: 0.5rem; }
+/* mobile and tablet: pull the index column and its gap in by 20%, so the
+   4rem left gutter becomes 3.2rem and the text gains that width back.
+   Applies to every role, work experience and internships alike. */
+@media (max-width: 1024px) {
+  .exp__row { gap: 1.2rem; }
+  .exp__num { width: 2rem; }
+}
 .exp__main { flex: 1; min-width: 0; }
 .exp__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; }
 .exp__co { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; }
@@ -1196,7 +1203,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
       </div>
       <div class="gantt__rows">
         <div class="gantt__row">
-          <span class="gantt__label">Vardhaman<small>Trading Analyst</small></span>
+          <span class="gantt__label">Vardhaman Global<small>Trading Analyst</small></span>
           <span class="gantt__track">
             <span class="gantt__bar" data-bar style="left:55.556%;width:36.111%" title="Jan 2023 to Mar 2026"></span>
           </span>
