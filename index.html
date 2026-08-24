@@ -715,6 +715,11 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 /* Both visuals are navy now, so a navy tint disappeared into the card.
    Both captions carry the same teal panel. */
 .proj__cap--a, .proj__cap--b { background: rgba(var(--teal-rgb), 0.55); }
+/* mobile: the visual is short, so the panel sat on top of the schema rows
+   and the chart bars. Drop it nearer the edge and tighten it a little. */
+@media (max-width: 639px) {
+  .proj__cap { bottom: 0.25rem; left: 0.5rem; right: 0.5rem; padding: 0.45rem 0.75rem; }
+}
 .proj__name { font-size: 0.875rem; font-weight: 500; }
 .proj__when { font-size: 0.65rem; opacity: 0.85; white-space: nowrap; }
 /* desktop only: +10%. On mobile the extra size wraps the name and the
