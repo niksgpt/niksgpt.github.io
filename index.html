@@ -538,6 +538,16 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 .exp__main { flex: 1; min-width: 0; }
 .exp__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; }
 .exp__co { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; }
+/* external links on names: quiet by default, with a small arrow marking
+   that they leave the page */
+.xlink { color: inherit; text-decoration: none; }
+.xlink::after {
+  content: "\2197"; display: inline-block; margin-left: 0.18em;
+  font-size: 0.62em; vertical-align: 0.32em; opacity: 0.4;
+  transition: opacity 0.25s ease, transform 0.25s var(--ease-expo);
+}
+.xlink:hover { text-decoration: underline; text-underline-offset: 0.16em; text-decoration-thickness: 1px; }
+.xlink:hover::after { opacity: 1; transform: translate(0.1em, -0.1em); }
 @media (min-width: 640px) { .exp__co { font-size: 1.875rem; } }
 .exp__dates { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-soft); white-space: nowrap; }
 .exp__role { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; font-size: 0.875rem; color: var(--ink-soft); }
@@ -1268,7 +1278,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
             <span class="exp__num">01</span>
             <div class="exp__main">
               <div class="exp__head">
-                <h3 class="exp__co">Vardhaman Global Sharecom Pvt. Ltd.</h3>
+                <h3 class="exp__co"><a class="xlink" href="https://vardhamanglobal.net/" target="_blank" rel="noopener noreferrer" aria-label="Vardhaman Global Sharecom Pvt. Ltd. &#8212; company website, opens in a new tab">Vardhaman Global Sharecom Pvt. Ltd.</a></h3>
                 <span class="exp__dates">Jan 2023 &ndash; Mar 2026</span>
               </div>
               <p class="exp__role"><span>Equity &amp; Derivatives Trader (Trading Analyst)</span><span class="exp__tag">Full-time</span></p>
@@ -1290,7 +1300,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
             <span class="exp__num">02</span>
             <div class="exp__main">
               <div class="exp__head">
-                <h3 class="exp__co">Epic Research Pvt. Ltd.</h3>
+                <h3 class="exp__co"><a class="xlink" href="https://www.linkedin.com/company/epic-research-private-limited/" target="_blank" rel="noopener noreferrer" aria-label="Epic Research Pvt. Ltd. &#8212; company LinkedIn page, opens in a new tab">Epic Research Pvt. Ltd.</a></h3>
                 <span class="exp__dates">Sep 2018 &ndash; Aug 2019</span>
               </div>
               <p class="exp__role"><span>Associate Financial Consultant</span><span class="exp__tag">Full-time</span></p>
@@ -1319,7 +1329,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
             <span class="exp__num">03</span>
             <div class="exp__main">
               <div class="exp__head">
-                <h3 class="exp__co">Finviral Business Pvt. Ltd.</h3>
+                <h3 class="exp__co"><a class="xlink" href="https://www.finviral.com/" target="_blank" rel="noopener noreferrer" aria-label="Finviral Business Pvt. Ltd. &#8212; company website, opens in a new tab">Finviral Business Pvt. Ltd.</a></h3>
                 <span class="exp__dates">Nov 2022 &ndash; Dec 2022</span>
               </div>
               <p class="exp__role"><span>Equity Analyst</span><span class="exp__tag">Internship</span></p>
@@ -1449,7 +1459,7 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
             <line x1="16" y1="128" x2="304" y2="128" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1" />
           </svg>
             <figcaption class="proj__cap proj__cap--b">
-              <span class="proj__name">Finlatics FMEP</span>
+              <span class="proj__name"><a class="xlink" href="https://www.finlatics.com/" target="_blank" rel="noopener noreferrer" aria-label="Finlatics FMEP &#8212; programme website, opens in a new tab">Finlatics FMEP</a></span>
               <span class="proj__when">Apr 2022 &ndash; Jun 2022</span>
             </figcaption>
           </div>
@@ -1546,17 +1556,17 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
           <div class="edu">
             <div class="edu__item">
               <span class="edu__deg">MBA, Service Management</span>
-              <span class="edu__school">R.A. Podar Institute of Management (FMS, Jaipur)</span>
+              <span class="edu__school"><a class="xlink" href="https://rapim.ac.in/" target="_blank" rel="noopener noreferrer" aria-label="R.A. Podar Institute of Management (FMS, Jaipur) &#8212; institute website, opens in a new tab">R.A. Podar Institute of Management (FMS, Jaipur)</a></span>
               <span class="edu__meta"><span>Nov 2020 &ndash; Oct 2022</span><span>4.96/6 CGPA</span><span>Finance &amp; Marketing</span></span>
             </div>
             <div class="edu__item">
               <span class="edu__deg">B.Tech, Electrical Engineering</span>
-              <span class="edu__school">Arya College of Engineering &amp; Information Technology (RTU, Kota)</span>
+              <span class="edu__school"><a class="xlink" href="https://www.aryacollege.in/" target="_blank" rel="noopener noreferrer" aria-label="Arya College of Engineering and Information Technology (RTU, Kota) &#8212; college website, opens in a new tab">Arya College of Engineering &amp; Information Technology (RTU, Kota)</a></span>
               <span class="edu__meta"><span>Aug 2014 &ndash; Jun 2018</span><span>74.1%</span><span>With Honors</span></span>
             </div>
             <div class="edu__item">
               <span class="edu__deg">Senior Secondary</span>
-              <span class="edu__school">Kendriya Vidyalaya No.1 (CBSE)</span>
+              <span class="edu__school"><a class="xlink" href="https://kvsangathan.nic.in/" target="_blank" rel="noopener noreferrer" aria-label="Kendriya Vidyalaya No.1 (CBSE) &#8212; Kendriya Vidyalaya Sangathan website, opens in a new tab">Kendriya Vidyalaya No.1 (CBSE)</a></span>
               <span class="edu__meta"><span>Mar 2014</span><span>75%</span></span>
             </div>
           </div>
