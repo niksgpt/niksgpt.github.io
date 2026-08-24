@@ -712,10 +712,17 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
   padding: 0.625rem 0.875rem;
   display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem;
 }
-.proj__cap--a { background: rgba(var(--teal-rgb), 0.55); }
-.proj__cap--b { background: rgba(var(--navy-rgb), 0.45); }
+/* Both visuals are navy now, so a navy tint disappeared into the card.
+   Both captions carry the same teal panel. */
+.proj__cap--a, .proj__cap--b { background: rgba(var(--teal-rgb), 0.55); }
 .proj__name { font-size: 0.875rem; font-weight: 500; }
 .proj__when { font-size: 0.65rem; opacity: 0.85; white-space: nowrap; }
+/* desktop only: +10%. On mobile the extra size wraps the name and the
+   caption swallows half the graphic. */
+@media (min-width: 1025px) {
+  .proj__name { font-size: 0.9625rem; }
+  .proj__when { font-size: 0.715rem; }
+}
 .proj__body { padding: 1.5rem; }
 .proj__body .bullets li { font-size: 0.8125rem; line-height: 1.65; }
 /* desktop: +2px, matching the treatment on the experience bullets */
