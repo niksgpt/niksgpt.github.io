@@ -685,6 +685,14 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
 }
 .js .sbar__fill { transform: scaleX(0); }
 .js .sbar__fill.is-in { transform: scaleX(1); }
+/* skills the bars don't cover, as small chips under them */
+.sextra { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--hairline); }
+.sextra__k {
+  display: block; font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--ink-soft);
+}
+.sextra__chips { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.5rem; }
+.sextra__chips .chip { font-size: 0.72rem; padding: 0.25rem 0.625rem; }
 .sbar__v { font-size: 0.75rem; color: var(--ink-soft); text-align: right; }
 
 /* ============================================================
@@ -1480,13 +1488,13 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
           </div>
           <div class="proj__body">
             <ul class="bullets">
-              <li>Built and shipped <b>DoodhBook</b>, a dairy ledger app live on Google Play, on a relational <b>Supabase (PostgreSQL)</b> schema with foreign-key constraints enforcing data integrity across shopkeepers, customers, suppliers, transactions, and pricing.</li>
-              <li>Enforced <b>Row-Level Security (RLS)</b> policies for three user roles (Shopkeeper, Customer, Supplier) so each role sees only its own data.</li>
+              <li>Built and shipped <b>DoodhBook</b>, a dairy ledger app live on Google Play, on a <b>10-table relational schema in Supabase (PostgreSQL)</b> with foreign-key constraints enforcing data integrity across shopkeepers, customers, suppliers, transactions, and pricing.</li>
+              <li>Implemented <b>role-based data access</b> for three user types (Shopkeeper, Customer, Supplier), with each role seeing only its own slice of data &mdash; reducing data exposure and enforcing row-level business logic.</li>
               <li>Applied statistical measures to transaction data: a <b>weighted mean</b> (by milk quantity) for monthly average Fat and SNF, calculated separately for cow and buffalo milk, and the <b>mode</b> of recent purchases to auto-fill quantity and milk type.</li>
               <li>Automated recurring ledger entries server-side with <b>pg_cron</b> scheduled SQL jobs; used <b>Claude Code (Gen AI with MCP)</b> to generate SQL schemas and speed up <b>React Native</b> development.</li>
             </ul>
             <div class="proj__stack">
-              <span class="chip">React Native</span><span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">RLS</span><span class="chip">pg_cron</span><span class="chip">Claude Code</span>
+              <span class="chip">React Native</span><span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">RBAC</span><span class="chip">pg_cron</span><span class="chip">Claude Code</span>
             </div>
             <p class="proj__link"><a class="xlink" href="https://play.google.com/store/apps/details?id=com.niks_gpt.doodhbook" target="_blank" rel="noopener noreferrer" aria-label="Try DoodhBook, the easy daily milk hisaab app &#8212; Google Play, opens in a new tab">Try DoodhBook &mdash; the easy daily milk hisaab app</a></p>
           </div>
@@ -1593,13 +1601,17 @@ main { width: 100%; overflow-x: clip; padding: 0.5rem; }
           <h3>Core skills</h3>
           <p class="ecard__lead">Roles and projects where each one did the work.</p>
           <ul class="sbars">
-            <li class="sbar"><span class="sbar__k">Power BI</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:100%"></i></span><span class="sbar__v">4</span></li>
-            <li class="sbar"><span class="sbar__k">Advanced Excel</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:100%"></i></span><span class="sbar__v">4</span></li>
-            <li class="sbar"><span class="sbar__k">Macros &amp; VBA</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:25%"></i></span><span class="sbar__v">1</span></li>
-            <li class="sbar"><span class="sbar__k">SQL</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:75%"></i></span><span class="sbar__v">3</span></li>
-            <li class="sbar"><span class="sbar__k">Capital Markets</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:75%"></i></span><span class="sbar__v">3</span></li>
-            <li class="sbar"><span class="sbar__k">ETL</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:50%"></i></span><span class="sbar__v">2</span></li>
+            <li class="sbar"><span class="sbar__k">Power BI</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:60%"></i></span><span class="sbar__v">3</span></li>
+            <li class="sbar"><span class="sbar__k">Advanced Excel</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:60%"></i></span><span class="sbar__v">3</span></li>
+            <li class="sbar"><span class="sbar__k">Macros &amp; VBA</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:20%"></i></span><span class="sbar__v">1</span></li>
+            <li class="sbar"><span class="sbar__k">SQL</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:60%"></i></span><span class="sbar__v">3</span></li>
+            <li class="sbar"><span class="sbar__k">Capital Markets</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:100%"></i></span><span class="sbar__v">5</span></li>
+            <li class="sbar"><span class="sbar__k">ETL</span><span class="sbar__track"><i class="sbar__fill" data-bar style="--w:60%"></i></span><span class="sbar__v">3</span></li>
           </ul>
+          <div class="sextra">
+            <span class="sextra__k">Also in the toolkit</span>
+            <div class="sextra__chips"><span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">Pivot Tables</span><span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">Data Cleaning &amp; Validation</span><span class="chip">Statistical Analysis</span><span class="chip">Predictive Modeling</span><span class="chip">A/B Testing</span><span class="chip">KPI Reporting</span><span class="chip">Dashboarding</span><span class="chip">Backtesting</span><span class="chip">Generative AI (Claude Code, MCP)</span></div>
+          </div>
         </div>
       </li>
 
